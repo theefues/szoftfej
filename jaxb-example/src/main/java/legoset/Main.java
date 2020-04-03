@@ -26,9 +26,7 @@ public class Main {
         minifigs.add(new Minifig("Imperial Pilot", 1));
         minifigs.add(new Minifig("Mimban Stormtrooper", 1));
         legoset.setMinifigs(minifigs);
-        ArrayList<Weight> weight = new ArrayList<>();
-        weight.add(new Weight(0.89, "kg"));
-        legoset.setWeight(weight);
+        legoset.setWeight(new Weight(0.89, "kg"));
         legoset.setUrl(new URL("https://brickset.com/sets/75211-1/Imperial-TIE-Fighter"));
 
         JAXBHelper.toXML(legoset, System.out);
