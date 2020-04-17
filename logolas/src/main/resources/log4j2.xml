@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<CustomLevels>
+    	<CustomLevel name="VIOLATION" intLevel="150" />
+    	<CustomLevel name="REQUEST" intLevel="350" />
+  	</CustomLevels>
+
+    <Appenders>
+        <RollingFile name="RollingFile" fileName="messages.log" filePattern="messages%i.log.zip" ignoreExceptions="true">
+            <PatternLayout>
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+            	<OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="1KB" />
+                <TimeBasedTriggeringPolicy modulate="true" />
+            </Policies>
+            <DefaultRolloverStrategy max="5" compressionLevel="0" fileIndex="max" />
+        </RollingFile>
+ 
+ 		<File name="File" fileName="győrfi_pál.log" immediateFlush="false" append="false">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+        </File>
+ 
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="husvetilog.Main" additivity="true">
+            <appender-ref ref="RollingFile" level="debug" />
+            <appender-ref ref="File" level="VIOLATION" />
+        </Logger>
+        <Root level="debug" additivity="false">
+            <appender-ref ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>
